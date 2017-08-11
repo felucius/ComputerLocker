@@ -8,13 +8,52 @@
     tools:context="maximedelange.computerlocker.Screen.StartScreen"
     tools:showIn="@layout/activity_start_screen">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+    <LinearLayout
+        android:layout_width="399dp"
+        android:layout_height="418dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:weightSum="1"
+        tools:layout_editor_absoluteY="177dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOCK"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="88dp"
+            tools:layout_editor_absoluteY="-1dp" />
+
+        <ImageButton
+            android:id="@+id/btnLock"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            tools:layout_editor_absoluteX="123dp"
+            tools:layout_editor_absoluteY="266dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="UNLOCK"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnUnlock"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            tools:layout_editor_absoluteX="144dp"
+            tools:layout_editor_absoluteY="271dp" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

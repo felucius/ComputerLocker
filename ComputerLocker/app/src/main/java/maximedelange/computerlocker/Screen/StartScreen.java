@@ -9,22 +9,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-
-import android.os.StrictMode;
-
+import maximedelange.computerlocker.Domain.ClientLocker;
 import maximedelange.computerlocker.R;
 
 public class StartScreen extends AppCompatActivity {
 
     // Fields
     private Context context = this;
+    private ImageButton lock = null;
+    private ClientLocker client = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +30,9 @@ public class StartScreen extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-
-        makeConnection();
+        // Additions
+        client = new ClientLocker();
+        lockComputer();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,21 +66,15 @@ public class StartScreen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void makeConnection(){
-        String serverAddress = "192.168.2.11";
-        try {
-            Socket socket = new Socket(serverAddress, 8888);
-
-            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-            writer.println("You are connected.");
-
-
-            //BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            //String answer = input.readLine();
-            //Toast.makeText(context, answer, Toast.LENGTH_LONG).show();
-        }catch (IOException ioEx){
-            ioEx.printStackTrace();
-        }
-
+    public void lockComputer(){
+        lock = (ImageButton) findViewById(R.id.btnLock);
+        lock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client.getPermission();
+                client.makeConnection();
+            }
+        });
     }
+
 }
