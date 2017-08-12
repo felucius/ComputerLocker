@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,6 +29,7 @@ public class StartScreen extends AppCompatActivity implements AdapterView.OnItem
     // Fields
     private ImageButton lock = null;
     private ImageButton unlock = null;
+    private ImageButton searchIPAddress = null;
     private ClientLocker client = null;
     private ActionBar actionBar = null;
     private Button addIP = null;
@@ -71,7 +74,7 @@ public class StartScreen extends AppCompatActivity implements AdapterView.OnItem
                 client.getPermission();
                 connection = client.makeConnection(1, selectedIPAddress);
                 if(connection == 0){
-                    Toast.makeText(context, "No connection available, check server.",
+                    Toast.makeText(context, "No connection available, Choose an IP address or add one.",
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -89,7 +92,7 @@ public class StartScreen extends AppCompatActivity implements AdapterView.OnItem
                 client.getPermission();
                 connection = client.makeConnection(2, selectedIPAddress);
                 if(connection == 0){
-                    Toast.makeText(context, "No connection available. check server.",
+                    Toast.makeText(context, "No connection available, Choose an IP address or add one.",
                             Toast.LENGTH_LONG).show();
                 }
             }

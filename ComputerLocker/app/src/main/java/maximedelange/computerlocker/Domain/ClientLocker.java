@@ -1,6 +1,8 @@
 package maximedelange.computerlocker.Domain;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 public class ClientLocker {
     // Fields
+    private Socket socket = null;
 
     // Constructor
     public ClientLocker(){
@@ -30,7 +33,7 @@ public class ClientLocker {
     public Integer makeConnection(Integer number, String serverAddress){
         // IP address.
         try {
-            Socket socket = new Socket(serverAddress, 8888);
+            socket = new Socket(serverAddress, 8888);
 
             if(socket != null){
                 // Sending message to the server if the connection has been established.
@@ -55,7 +58,7 @@ public class ClientLocker {
 
         }catch (IOException ioEx){
             ioEx.printStackTrace();
-            return null;
+            return 0;
         }
     }
 }
