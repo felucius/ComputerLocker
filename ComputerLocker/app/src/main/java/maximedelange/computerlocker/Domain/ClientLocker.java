@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import android.os.StrictMode;
+import android.widget.Toast;
+
 /**
  * Created by M on 8/11/2017.
  */
@@ -25,29 +27,35 @@ public class ClientLocker {
         }
     }
 
-    public void makeConnection(Integer number){
+    public Integer makeConnection(Integer number, String serverAddress){
         // IP address.
-        String serverAddress = "192.168.2.11";
         try {
             Socket socket = new Socket(serverAddress, 8888);
 
-            // Sending message to the server if the connection has been established.
-            PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-            writer.println("You are connected.");
+            if(socket != null){
+                // Sending message to the server if the connection has been established.
+                PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+                writer.println("You are connected.");
 
-            // Sending the number of the action to the server.
-            switch(number){
-                case 1:
-                    // Number 1 is locking the computer.
-                    writer.println(1);
-                    break;
-                case 2:
-                    // Number 2 is unlocking the computer.
-                    writer.println(2);
-                    break;
+                // Sending the number of the action to the server.
+                switch(number){
+                    case 1:
+                        // Number 1 is locking the computer.
+                        writer.println(1);
+                        break;
+                    case 2:
+                        // Number 2 is unlocking the computer.
+                        writer.println(2);
+                        break;
+                }
+                return 1;
+            }else{
+                return 0;
             }
+
         }catch (IOException ioEx){
             ioEx.printStackTrace();
+            return null;
         }
     }
 }
