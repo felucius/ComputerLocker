@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,10 +20,11 @@ import maximedelange.computerlocker.R;
 public class StartScreen extends AppCompatActivity {
 
     // Fields
-    private Context context = this;
     private ImageButton lock = null;
     private ImageButton unlock = null;
     private ClientLocker client = null;
+    private ActionBar actionBar = null;
+    private Button addIP = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +34,10 @@ public class StartScreen extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Additions
+        hideActionBar();
         client = new ClientLocker();
         lockComputer();
         unlockComputer();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
@@ -90,4 +84,12 @@ public class StartScreen extends AppCompatActivity {
         });
     }
 
+    public void hideActionBar(){
+        actionBar = getSupportActionBar();
+        actionBar.hide();
+    }
+
+    public void addIPAddress(){
+        
+    }
 }
