@@ -32,9 +32,10 @@
 
         <ImageButton
             android:id="@+id/btnLock"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="100dp"
+            android:background="@mipmap/lockclosed"
             tools:layout_editor_absoluteX="123dp"
             tools:layout_editor_absoluteY="266dp" />
 
@@ -48,9 +49,10 @@
 
         <ImageButton
             android:id="@+id/btnUnlock"
-            android:layout_width="match_parent"
-            android:layout_height="110dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="100dp"
+            android:background="@mipmap/lockopen"
             tools:layout_editor_absoluteX="144dp"
             tools:layout_editor_absoluteY="271dp" />
 
