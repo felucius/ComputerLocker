@@ -25,7 +25,7 @@ public class ClientLocker {
         }
     }
 
-    public void makeConnection(){
+    public void makeConnection(Integer number){
         // IP address.
         String serverAddress = "192.168.2.11";
         try {
@@ -35,10 +35,17 @@ public class ClientLocker {
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
             writer.println("You are connected.");
 
-
-            //BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            //String answer = input.readLine();
-            //Toast.makeText(context, answer, Toast.LENGTH_LONG).show();
+            // Sending the number of the action to the server.
+            switch(number){
+                case 1:
+                    // Number 1 is locking the computer.
+                    writer.println(1);
+                    break;
+                case 2:
+                    // Number 2 is unlocking the computer.
+                    writer.println(2);
+                    break;
+            }
         }catch (IOException ioEx){
             ioEx.printStackTrace();
         }

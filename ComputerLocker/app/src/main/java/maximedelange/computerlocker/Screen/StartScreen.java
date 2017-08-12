@@ -21,6 +21,7 @@ public class StartScreen extends AppCompatActivity {
     // Fields
     private Context context = this;
     private ImageButton lock = null;
+    private ImageButton unlock = null;
     private ClientLocker client = null;
 
     @Override
@@ -33,6 +34,7 @@ public class StartScreen extends AppCompatActivity {
         // Additions
         client = new ClientLocker();
         lockComputer();
+        unlockComputer();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,18 @@ public class StartScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 client.getPermission();
-                client.makeConnection();
+                client.makeConnection(1);
+            }
+        });
+    }
+
+    public void unlockComputer(){
+        unlock = (ImageButton) findViewById(R.id.btnUnlock);
+        unlock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client.getPermission();
+                client.makeConnection(2);
             }
         });
     }
