@@ -79,6 +79,7 @@ public class ComputerLockerServer {
             // Disable taskmessenger and starting a lock screen from JavaFX.
             String command = "cmd /k start "
                     + "/b cmd2 /c REG add HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System /v DisableTaskMgr /t REG_DWORD /d 1 /f "
+                    + "&& start /b cmd2 /c REG add \"HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Keyboard Layout\" /v \"Scancode Map\" /t REG_BINARY /d \"00000000000000000300000000005BE000005CE000000000\" /f "
                     + "&& C:\\MaximeProject\\ComputerLocker\\ComputerLocker\\ComputerLockScreenFX\\dist\\ComputerLockScreenFX.jar";
             Process process = Runtime.getRuntime().exec(command);
             OutputStream output = process.getOutputStream();
